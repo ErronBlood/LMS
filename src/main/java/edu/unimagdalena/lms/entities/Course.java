@@ -34,5 +34,7 @@ public class Course {
     @OneToMany(mappedBy = "courses")
     private Set<Lesson> lessons;
 
+    @OneToMany(mappedBy = "courses")
+    private Set<Enrollment> enrollments;
 
 }

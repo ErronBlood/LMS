@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -25,4 +26,7 @@ public class Student {
     private Instant createdAt;
     @Column(name = "Updated_At")
     private Instant UpdatedAt;
+
+    @OneToMany(mappedBy = "students")
+    private Set<Enrollment> enrollments;
 }
