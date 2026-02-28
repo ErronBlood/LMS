@@ -30,6 +30,6 @@ public class Enrollment {
 
     private String status;
 
-    @Column(name = "enrrollment_at")
-    private Instant enrrollmentAt;
+    @Column(name = "enrollment_at")
+    private Instant enrollmentAt;
 }

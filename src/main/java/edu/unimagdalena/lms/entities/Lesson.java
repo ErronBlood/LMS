@@ -18,12 +18,12 @@ public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Column(name = "tittle",  nullable = false)
+    @Column(name = "title",  nullable = false)
     private String title;
     @Column(name = "Order_Index",  nullable = false)
     private int orderIndex;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
-    private UUID courseId;
+    private Course course;
 }

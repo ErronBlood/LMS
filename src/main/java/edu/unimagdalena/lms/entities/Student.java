@@ -27,6 +27,6 @@ public class Student {
     @Column(name = "Updated_At")
     private Instant UpdatedAt;
 
-    @OneToMany(mappedBy = "students")
+    @OneToMany(mappedBy = "student")
     private Set<Enrollment> enrollments;
 }

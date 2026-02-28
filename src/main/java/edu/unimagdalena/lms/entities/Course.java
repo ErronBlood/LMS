@@ -20,10 +20,8 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @ManyToOne
-    @JoinColumn(name = "instructor_id")
-    private Instructor instructor;
-    private String tittle;
+
+    private String title;
     private String status;
     private Boolean active;
     @Column(name = "Created_At")
@@ -31,10 +29,14 @@ public class Course {
     @Column(name = "Updated_At")
     private Instant updatedAt;
 
-    @OneToMany(mappedBy = "courses")
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
+
+    @OneToMany(mappedBy = "course")
     private Set<Lesson> lessons;
 
-    @OneToMany(mappedBy = "courses")
+    @OneToMany(mappedBy = "course")
     private Set<Enrollment> enrollments;
 
 }

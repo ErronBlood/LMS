@@ -27,9 +27,9 @@ public class Instructor {
     @Column(name = "Updated_At")
     private Instant updatedAt;
 
-    @OneToMany(mappedBy = "instructors")
+    @OneToMany(mappedBy = "instructor")
     private Set<Course> courses;
 
-    @OneToOne(mappedBy = "instructors")
+    @OneToOne(mappedBy = "instructor")
     private InstructorProfile profile;
 }

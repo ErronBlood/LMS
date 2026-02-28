@@ -22,5 +22,5 @@ public class InstructorProfile {
     private String bio;
     @OneToOne
     @JoinColumn(name = "instructor_id", referencedColumnName = "id")
-    private UUID instructorId;
+    private Instructor instructor;
 }
