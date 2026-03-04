@@ -31,5 +31,5 @@ public class Student {
     private Set<Enrollment> enrollments;
 
     @OneToMany(mappedBy = "student")
-    private Set<Assesment> Assesments;
+    private Set<Assessment> assessments;
 }
