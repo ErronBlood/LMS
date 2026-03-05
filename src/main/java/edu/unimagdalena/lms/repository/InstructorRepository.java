@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.UUID;
 
-public interface InstructorRepository extends JpaRepository<InstructorRepository, UUID> {
+public interface InstructorRepository extends JpaRepository<Instructor, UUID> {
 
     Instructor findByEmail(String email);
 
@@ -19,3 +19,4 @@ public interface InstructorRepository extends JpaRepository<InstructorRepository
     @Query("SELECT i FROM Instructor i LEFT JOIN FETCH i.courses c ORDER BY c.createdAt DESC")
     List<Instructor> findAllWithCoursesOrdered();
 }
+
