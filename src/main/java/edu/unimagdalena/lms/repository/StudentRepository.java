@@ -17,5 +17,5 @@ public interface StudentRepository extends JpaRepository<Student, UUID> {
 
     Optional<Student> findByEmailIgnoreCase(String email);
 
-    Student findByFullNameIgnoreCase(String fullName);
+    Optional<Student> findByFullNameIgnoreCase(String fullName);
 }
