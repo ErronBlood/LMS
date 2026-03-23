@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,9 +28,11 @@ public class Student {
     @Column(name = "Updated_At")
     private Instant UpdatedAt;
 
+    @Builder.Default
     @OneToMany(mappedBy = "student")
-    private Set<Enrollment> enrollments;
+    private Set<Enrollment> enrollments = new HashSet<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "student")
-    private Set<Assessment> assessments;
+    private Set<Assessment> assessments = new HashSet<>();
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -31,10 +32,12 @@ public class Course {
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
+    @Builder.Default
     @OneToMany(mappedBy = "course")
-    private Set<Lesson> lessons;
+    private Set<Lesson> lessons = new HashSet<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "course")
-    private Set<Enrollment> enrollments;
+    private Set<Enrollment> enrollments =  new HashSet<>();
 
 }

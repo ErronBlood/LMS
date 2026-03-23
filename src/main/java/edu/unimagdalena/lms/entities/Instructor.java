@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 
+@Builder
 @Entity
 @Table(name = "instructors")
 @Getter
@@ -27,8 +29,9 @@ public class Instructor {
     @Column(name = "Updated_At")
     private Instant updatedAt;
 
+    @Builder.Default
     @OneToMany(mappedBy = "instructor")
-    private Set<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 
     @OneToOne(mappedBy = "instructor")
     private InstructorProfile profile;

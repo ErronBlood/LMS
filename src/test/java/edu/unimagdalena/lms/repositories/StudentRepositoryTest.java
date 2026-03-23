@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,31 +39,19 @@ public class StudentRepositoryTest extends AbstractRepository{
         var enrollment2 = Enrollment.builder().student(student2).course(course2).build();
         var enrollment3 =  Enrollment.builder().student(student1).course(course2).build();
 
-        Set<Enrollment> enrollmentsStudent1 = new HashSet<>();
-        Set<Enrollment> enrollmentsStudent2 = new HashSet<>();
-        Set<Enrollment> enrollmentsCourse1 = new HashSet<>();
-        Set<Enrollment> enrollmentsCourse2 = new HashSet<>();
+        student1.getEnrollments().add(enrollment1);
+        student1.getEnrollments().add(enrollment3);
+        student2.getEnrollments().add(enrollment2);
 
-        enrollmentsStudent1.add(enrollment1);
-        enrollmentsStudent1.add(enrollment3);
-        enrollmentsStudent2.add(enrollment2);
+        course1.getEnrollments().add(enrollment1);
+        course2.getEnrollments().add(enrollment2);
+        course2.getEnrollments().add(enrollment3);
 
-        enrollmentsCourse1.add(enrollment1);
-        enrollmentsCourse2.add(enrollment2);
-        enrollmentsCourse2.add(enrollment3);
-        student1.setEnrollments(enrollmentsStudent1);
-        student2.setEnrollments(enrollmentsStudent2);
+        studentRepository.save(student1); studentRepository.save(student2);
 
-        course1.setEnrollments(enrollmentsCourse1);
-        course2.setEnrollments(enrollmentsCourse2);
+        courseRepository.save(course1); courseRepository.save(course2);
 
-        studentRepository.save(student1);
-        studentRepository.save(student2);
-        courseRepository.save(course1);
-        courseRepository.save(course2);
-        enrollmentRepository.save(enrollment1);
-        enrollmentRepository.save(enrollment2);
-        enrollmentRepository.save(enrollment3);
+        enrollmentRepository.save(enrollment1);enrollmentRepository.save(enrollment2);enrollmentRepository.save(enrollment3);
 
         //when
         List<Student> course1Students = studentRepository.findByEnrollments_Course_Id(course1.getId());
@@ -94,30 +83,18 @@ public class StudentRepositoryTest extends AbstractRepository{
         var assessment3= Assessment.builder().type("exam").score(299).student(student3).course(course1).build();
         var assessment4= Assessment.builder().type("exam").score(300).student(student4).course(course1).build();
 
-        Set<Assessment> assessmentsStudent1 = new HashSet<>();
-        Set<Assessment> assessmentsStudent2 = new HashSet<>();
-        Set<Assessment> assessmentsStudent3 = new HashSet<>();
-        Set<Assessment> assessmentsStudent4 = new HashSet<>();
+        student1.getAssessments().add(assessment1);
+        student2.getAssessments().add(assessment2);
+        student3.getAssessments().add(assessment3);
+        student4.getAssessments().add(assessment4);
 
-        assessmentsStudent1.add(assessment1);
-        assessmentsStudent2.add(assessment2);
-        assessmentsStudent3.add(assessment3);
-        assessmentsStudent4.add(assessment4);
+        studentRepository.save(student1); studentRepository.save(student2);
+        studentRepository.save(student3); studentRepository.save(student4);
 
-        student1.setAssessments(assessmentsStudent1);
-        student2.setAssessments(assessmentsStudent2);
-        student3.setAssessments(assessmentsStudent3);
-        student4.setAssessments(assessmentsStudent4);
-
-        studentRepository.save(student1);
-        studentRepository.save(student2);
-        studentRepository.save(student3);
-        studentRepository.save(student4);
         courseRepository.save(course1);
-        assessmentRepository.save(assessment1);
-        assessmentRepository.save(assessment2);
-        assessmentRepository.save(assessment3);
-        assessmentRepository.save(assessment4);
+
+        assessmentRepository.save(assessment1); assessmentRepository.save(assessment2);
+        assessmentRepository.save(assessment3); assessmentRepository.save(assessment4);
 
         //When
         List<Student> students = studentRepository.findByPassingByCourseId(course1.getId());
@@ -164,7 +141,6 @@ public class StudentRepositoryTest extends AbstractRepository{
         assertThat(nameExistentLower).isPresent();
         assertThat(nameNonExistent).isNotPresent();
     }
-
 
 
 
